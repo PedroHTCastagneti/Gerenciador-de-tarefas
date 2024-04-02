@@ -36,9 +36,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { Router } from 'next/router';
 
-const pages = ['Novas tarefas', 'deletar ', 'concluidas'];
+
+const pages = [
+  {label:"Novas tarefas", url: "/novastarefas"},
+  {label:"Deletar", url: "/sobre"},
+  {label:"Concluidas", url: "/historico"}
+  ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -52,7 +59,7 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setAnchorElNav();
   };
 
   const handleCloseUserMenu = () => {
@@ -68,7 +75,7 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/sobre"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -123,14 +130,14 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/historico"
             sx={{
-              mr: 2,
+              mr: 1,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -141,8 +148,10 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={
+                  router.push(page.url)
+                }
+                sx={{ my: 3, color: 'white', display: 'block' }}
               >
                 {page}
               </Button>
