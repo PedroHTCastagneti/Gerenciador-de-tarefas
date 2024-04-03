@@ -1,27 +1,3 @@
-// import Link from "next/link"
-
-// export default function Navbar() {
-//     return(
-//         <ul >
-//         <li className="text-blue-500">
-//           <Link href="/">
-//             Tarefas
-//           </Link>
-//         </li>
-//         <li>
-//           <Link href="/historico">
-//             Historico
-//           </Link>
-//         </li>
-//         <li>
-//           <Link href="/sobre">
-//             Sobre
-//           </Link>
-//         </li>
-//     </ul>
-
-//     )
-// }
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -36,24 +12,25 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Router } from 'next/router';
-
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const pages = [
-  {label:"Novas tarefas", url: "/novastarefas"},
-  {label:"Deletar", url: "/sobre"},
-  {label:"Concluidas", url: "/historico"}
-  ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+  { label: "Novas tarefas", url: "/novastarefas" },
+  { label: "Concluídas", url: "/historico" }
+];
 
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const router = useRouter();
 
-  const handleOpenNavMenu = (event) => {
+  function handleOpenNavMenu(event) {
     setAnchorElNav(event.currentTarget);
-  };
+  }
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -70,7 +47,7 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AssignmentIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AssignmentIcon sx={{ display: { xs: 'none', md: 'flex', fontSize: '56px', }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -119,8 +96,12 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.url} onClick={handleCloseNavMenu}>
+                  <Link href={page.url}>
+
+                      <Typography textAlign="center">{page.label}</Typography>
+
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -133,11 +114,11 @@ function ResponsiveAppBar() {
             href="/historico"
             sx={{
               mr: 1,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: 'flex', md: 'none' , },
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.1rem',
+              letterSpacing: '.rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -147,13 +128,13 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={
-                  router.push(page.url)
-                }
+                key={page.url}
+                onClick={() => {
+                  router.push(page.url);
+                }}
                 sx={{ my: 3, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>
@@ -192,4 +173,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;
