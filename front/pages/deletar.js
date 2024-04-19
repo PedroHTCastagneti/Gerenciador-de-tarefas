@@ -1,10 +1,14 @@
-
-import Link from "next/link"
+'use client'
+import Head from "next/head";
+import * as React from "react";
 export default function Historico() {
-    return (   
+  return (
     <>
-        <h1>Pagina Para deletar fake</h1>
+      <Head>
+        <title>Deletar</title>
+      </Head>
 
+      <h1>Pagina Para deletar fake</h1>
     </>
-    )
+  );
 }

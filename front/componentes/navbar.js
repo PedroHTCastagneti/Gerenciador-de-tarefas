@@ -15,6 +15,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+
 const pages = [
   { label: "Novas tarefas", url: "/novastarefas" },
   { label: "Concluídas", url: "/historico" }
@@ -44,7 +45,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor: '#B8B8B8'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AssignmentIcon sx={{ display: { xs: 'none', md: 'flex', fontSize: '56px', }, mr: 1 }} />
@@ -58,6 +59,7 @@ function ResponsiveAppBar() {
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
+              fontSize:"26px",
               letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
@@ -99,14 +101,13 @@ function ResponsiveAppBar() {
                 <MenuItem key={page.url} onClick={handleCloseNavMenu}>
                   <Link href={page.url}>
 
-                      <Typography textAlign="center">{page.label}</Typography>
-
+                      <Typography textAlign="center">{page.label}</Typography> 
                   </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AssignmentIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AssignmentIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1}} />
           <Typography
             variant="h5"
             noWrap
@@ -125,14 +126,20 @@ function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{
+             flexGrow: 3,
+             display: { xs: 'none', md: 'flex' }, 
+             justifyContent: 'flex-end',
+             marginRight: 5,
+             color: "B8B8B8"
+              }}>
             {pages.map((page) => (
               <Button
                 key={page.url}
                 onClick={() => {
                   router.push(page.url);
                 }}
-                sx={{ my: 3, color: 'white', display: 'block' }}
+                sx={{ my: 3, mx: 2, color: 'white', display: 'block', fontSize: "16px" }}
               >
                 {page.label}
               </Button>

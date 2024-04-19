@@ -1,7 +1,14 @@
+'use client'
+import Head from "next/head";
+import * as React from "react";
 export default function Historico() {
-    return (   
+  return (
     <>
-            <h1>Pagina Historico</h1>
+      <Head>
+        <title>Historico</title>
+      </Head>
+
+      <h1>Pagina Historico</h1>
     </>
-    )
+  );
 }
