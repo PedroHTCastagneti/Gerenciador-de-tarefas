@@ -1,93 +1,44 @@
-"use client";
-import Head from "next/head";
-import React from "react";
-// export default function NovasTarefas() {
-//   return (
-//     <div>
-//       <Head>
-//         <title>Novas Novas Tarefas</title>
-//       </Head>
-//     </div>
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-function Card({ task }) {
+export default function ImgMediaCard({
+  title,
+  description,
+  deadline,
+  additionalLinks,
+  mediaComponent,
+}) {
   return (
-    <div>
-      <h3>{task.name}</h3>
-      <p>Deadline: {task.deadline}</p>
-    </div>
+    <Card sx={{ maxWidth: 345 }}>
+      {/* <CardMedia
+        // component="img"
+        // alt="green iguana"
+        // height="140"
+        // image="/static/images/cards/contemplative-reptile.jpg"
+        // Não usarei imagem
+      />  */}
+
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Descrição
+        </Typography>
+      </CardContent>
+
+       {/* Botões  */}
+      <CardActions dir="rtl">
+        <DeleteIcon size="small" variant="masonry" onClick={alert} />
+        {/* <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button> */}
+      </CardActions>
+    </Card>
   );
 }
-
-function Component({ tasks, setTasks }) {
-  const [taskName, setTaskName] = React.useState("");
-  const [deadline, setDeadline] = React.useState("");
-
-  const addTask = (e) => {
-    e.preventDefault();
-    setTasks([...tasks, { name: taskName, deadline }]);
-    setTaskName("");
-    setDeadline("");
-  };
-
-  return (
-    <div>
-      <form onSubmit={addTask}>
-        <input
-          type="text"
-          name="task_name"
-          placeholder="Task Name"
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
-        />
-        <input
-          type="date"
-          name="deadline"
-          value={deadline}
-          onChange={(e) => setDeadline(e.target.value)}
-        />
-        <button type="submit">Add Task</button>
-      </form>
-    </div>
-  );
-}
-
-function ListTasks({ tasks }) {
-  return (
-    <div>
-      {tasks.map((task, index) => (
-        <Card key={index} task={task} />
-      ))}
-    </div>
-  );
-}
-
-function Page() {
-  const [tasks, setTasks] = React.useState([]);
-
-  React.useEffect(() => {
-    const taskStorage = localStorage.getItem("tasks");
-    if (taskStorage) {
-      setTasks(JSON.parse(taskStorage));
-    }
-  }, []);
-
-  React.useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  return (
-    <>
-      <Head>
-        <title>Novas Tarefas</title>
-      </Head>
-
-      <Component tasks={tasks} setTasks={setTasks} />
-      <ListTasks tasks={tasks} />
-    </>
-  );
-}
-
-export default Page;
-
-// );
-// }

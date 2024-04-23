@@ -18,7 +18,8 @@ import Link from 'next/link';
 
 const pages = [
   { label: "Novas tarefas", url: "/novastarefas" },
-  { label: "Concluídas", url: "/historico" }
+  { label: "Concluídas", url: "/historico" },
+  { label: "grid", url: "/grid" }
 ];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -139,14 +140,14 @@ function ResponsiveAppBar() {
                 onClick={() => {
                   router.push(page.url);
                 }}
-                sx={{ my: 3, mx: 2, color: 'white', display: 'block', fontSize: "16px" }}
+                sx={{ my: 3, mx: 5, color: 'white', display: 'block', fontSize: "16px" }}
               >
                 {page.label}
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -174,7 +175,7 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>

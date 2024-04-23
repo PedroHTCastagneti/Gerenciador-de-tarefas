@@ -1,13 +1,6 @@
 "use client";
 import Head from "next/head";
 import React from "react";
-// export default function NovasTarefas() {
-//   return (
-//     <div>
-//       <Head>
-//         <title>Novas Novas Tarefas</title>
-//       </Head>
-//     </div>
 
 function Card({ task }) {
   return (
@@ -72,7 +65,7 @@ function Page() {
   }, []);
 
   React.useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    if (tasks.length > 0) localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   return (
@@ -88,6 +81,3 @@ function Page() {
 }
 
 export default Page;
-
-// );
-// }
