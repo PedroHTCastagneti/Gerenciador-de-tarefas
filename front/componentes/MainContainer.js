@@ -5,8 +5,6 @@ export default function MainContainer({children}){
     return(
     <>
         <Navbar />
-
-        <Cards/>
         <div>
         {children}
         </div>

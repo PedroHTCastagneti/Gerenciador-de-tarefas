@@ -14,6 +14,9 @@ function Card({ task }) {
 function Component({ tasks, setTasks }) {
   const [taskName, setTaskName] = React.useState("");
   const [deadline, setDeadline] = React.useState("");
+  const [difficulty, setdifficulty] = React.useState("");
+
+  
 
   const addTask = (e) => {
     e.preventDefault();

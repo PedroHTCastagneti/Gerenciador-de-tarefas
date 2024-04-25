@@ -9,36 +9,35 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ImgMediaCard({
   title,
-  description,
   deadline,
-  additionalLinks,
-  mediaComponent,
 }) {
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      {/* <CardMedia
-        // component="img"
-        // alt="green iguana"
-        // height="140"
-        // image="/static/images/cards/contemplative-reptile.jpg"
-        // Não usarei imagem
-      />  */}
+      <>
+
+    <Card sx={{ flexGrow: 1 }}>
+
 
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+
+        <Typography gutterBottom variant="h5" component="div" >
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Descrição
-        </Typography>
+        <div 
+        style={
+          {textAlign:"right"}
+        }
+        >
+        {deadline}
+        </div>
+
       </CardContent>
 
        {/* Botões  */}
       <CardActions dir="rtl">
-        <DeleteIcon size="small" variant="masonry" onClick={alert} />
-        {/* <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button> */}
+        <DeleteIcon size="small" variant="masonry" onClick={alert}/>
       </CardActions>
     </Card>
-  );
+ </>
+);
 }

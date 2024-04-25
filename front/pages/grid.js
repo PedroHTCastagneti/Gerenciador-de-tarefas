@@ -5,13 +5,14 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Task } from "@mui/icons-material";
+import ImgMediaCard from "@/componentes/card"
 
 export default function Home() {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
     padding: theme.spacing(7),
-    textAlign: "center",
+    textAlign: "left",
     color: theme.palette.text.secondary,
   }));
 
@@ -35,7 +36,10 @@ export default function Home() {
       >
         {task.map((task, index) => (
           <Grid xs={9} sm={4} md={5} xl={3} key={index}>
-            <Item></Item>
+            <Item>
+              <ImgMediaCard title={task.name} deadline={task.deadline}/>
+
+            </Item>
           </Grid>
         ))}
       </Grid>
