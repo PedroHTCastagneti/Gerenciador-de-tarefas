@@ -1,6 +1,7 @@
 "use client";
 import Head from "next/head";
 import React from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 function Card({ task }) {
   return (
@@ -14,13 +15,16 @@ function Card({ task }) {
 function Component({ tasks, setTasks }) {
   const [taskName, setTaskName] = React.useState("");
   const [deadline, setDeadline] = React.useState("");
-  const [difficulty, setdifficulty] = React.useState("");
 
   
+  const gerarID = () => {
+    return uuidv4()
+  }
 
   const addTask = (e) => {
     e.preventDefault();
-    setTasks([...tasks, { name: taskName, deadline }]);
+    const newTask = { id: gerarID(), name: taskName, deadline };
+    setTasks([...tasks, newTask]);
     setTaskName("");
     setDeadline("");
   };
@@ -51,7 +55,7 @@ function ListTasks({ tasks }) {
   return (
     <div>
       {tasks.map((task, index) => (
-        <Card key={index} task={task} />
+        <Card key={task.id} task={task} />
       ))}
     </div>
   );

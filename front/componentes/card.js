@@ -1,43 +1,27 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import DeleteIcon from "@mui/icons-material/Delete";
+import Checkbox from "@mui/material/Checkbox";
+import { pink } from "@mui/material/colors";
 
-export default function ImgMediaCard({
-  title,
-  deadline,
-}) {
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
+export default function ImgMediaCard({ title, deadline }) {
   return (
-      <>
-
-    <Card sx={{ flexGrow: 1 }}>
-
-
+    <>
       <CardContent>
-
-        <Typography gutterBottom variant="h5" component="div" >
+        <Typography gutterBottom variant="h4" component="div">
           {title}
+          <div style={{ textAlign: "right" }}>
+            <Checkbox {...label} defaultChecked 
+            sx={{
+             '& .MuiSvgIcon-root': { fontSize: 30 }
+            }}
+            color="secondary" />
+          </div>
         </Typography>
-        <div 
-        style={
-          {textAlign:"right"}
-        }
-        >
-        {deadline}
-        </div>
-
+        <div style={{ textAlign: "right" }}>{deadline}</div>
       </CardContent>
-
-       {/* Botões  */}
-      <CardActions dir="rtl">
-        <DeleteIcon size="small" variant="masonry" onClick={alert}/>
-      </CardActions>
-    </Card>
- </>
-);
+    </>
+  );
 }

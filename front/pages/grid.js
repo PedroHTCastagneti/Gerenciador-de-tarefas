@@ -5,7 +5,8 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Task } from "@mui/icons-material";
-import ImgMediaCard from "@/componentes/card"
+import ImgMediaCard from "@/componentes/card";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Home() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -22,7 +23,13 @@ export default function Home() {
     if (savedTask) {
       setTasks(JSON.parse(savedTask));
     }
-  },[]);
+  }, []);
+
+  const removeTask = (taskId) => {
+    const updatedTasks = task.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -35,10 +42,16 @@ export default function Home() {
         paddingRight={"1rem"}
       >
         {task.map((task, index) => (
-          <Grid xs={9} sm={4} md={5} xl={3} key={index}>
-            <Item>
-              <ImgMediaCard title={task.name} deadline={task.deadline}/>
-
+          <Grid xs={9} sm={4} md={5} xl={5} key={index}>
+            <Item >
+              <ImgMediaCard title={task.name} deadline={task.deadline} />
+              <div style={{ textAlign: "right" }}>
+                <DeleteIcon
+                  size="small"
+                  variant="masonry"
+                  onClick={() => removeTask(task.id)}
+                />
+              </div>
             </Item>
           </Grid>
         ))}
